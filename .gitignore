@@ -99,3 +99,4 @@ Doxyfile*
 celerytest
 build
 html
+celerytest_cfg.hpp

@@ -1,7 +1,7 @@
 # Minimum CMake version is 3.19
 cmake_minimum_required(VERSION 3.17)
 # We are at v0.3.0, since v0.2 is Celerytest Legacy
-project(celerytest VERSION 0.3.0.49)
+project(celerytest VERSION 0.3.0.50)
 
 
 # Configure this project
@@ -27,8 +27,9 @@ find_package(Threads REQUIRED)
 
 # Add the target
 add_executable(${PROJECT_NAME}
-        src/${PROJECT_NAME}_con.cpp
-        src/${PROJECT_NAME}.cpp)
+    src/${PROJECT_NAME}_con.cpp
+    src/${PROJECT_NAME}_gl.cpp
+    src/${PROJECT_NAME}.cpp)
 
 # Generate docs if we have it
 doxygen_add_docs(docs)
@@ -43,6 +44,7 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 target_include_directories(${PROJECT_NAME} PRIVATE include ${LUA_INCLUDE_DIR} ${SDL2_INCLUDE_DIR})
 # Link!
 target_link_libraries(${PROJECT_NAME} PRIVATE
+    OpenGL::OpenGL
     GLEW::GLEW
     ${LUA_LIBRARIES}
     Threads::Threads

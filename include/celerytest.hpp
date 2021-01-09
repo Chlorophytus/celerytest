@@ -1,13 +1,21 @@
 #pragma once
+#define GLEW_STATIC
 #include "celerytest_cfg.hpp"
+#include <GL/glew.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <cassert>
 #include <chrono>
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <exception>
 #include <iomanip>
+#include <lua5.3/lua.hpp>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
