@@ -1,5 +1,5 @@
 # celerytest
-Featherweight FOSS OpenGL 4 Blockland clone!
+Featherweight FOSS OpenGL 4 Blockland clone
 
 ## Usage
 Linux is required. I don't have a Windows machine to test this on.
@@ -14,8 +14,7 @@ $ ./celerytest
 - GPU minimum: Intel UHD6xx Graphics (a video card would be nice)
 ### ...how do I run this?
 - CMake 3.19.x required
-- SDL2 (Base / TTF / Image)
-- An OpenGL 4.6 runtime should be on your computer.
+- raylib v5.0
 
 ### ...why?
-I was bored. :)
+I was bored

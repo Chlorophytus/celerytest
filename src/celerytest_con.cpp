@@ -1,4 +1,4 @@
-#include "celerytest_con.hpp"
+#include "../include/celerytest_con.hpp"
 
 using namespace celerytest;
 
@@ -43,7 +43,7 @@ void con::terminal_listener::prelude(std::string &string, con::severity_t severi
 }
 
 void con::terminal_listener::finalize(std::string &string) {
-  std::fprintf(stderr, string.c_str());
+  std::fprintf(stderr, "%s", string.c_str());
 }
 
 void con::initialize() { listener_list = std::make_unique<listener_list_t>(); }
