@@ -4,9 +4,30 @@ using namespace celerytest;
 
 static auto listener_list = std::unique_ptr<con::listener_list_t>{nullptr};
 
-void con::terminal_listener::prelude(std::string &string, con::severity_t severity) {
-  // We should set HH:MM:SS.III
+void con_raylib_hook(int msg_type, const char *text, va_list args) {
+  constexpr auto BUFFER_SIZE = 1024;
+  char text_buffer[BUFFER_SIZE]{0};
+  vsnprintf(text_buffer, BUFFER_SIZE, text, args);
 
+  switch (msg_type) {
+  case LOG_DEBUG:
+  case LOG_INFO:
+    con::log(con::severity_t::echo, text_buffer, "\n");
+    break;
+  case LOG_WARNING:
+    con::log(con::severity_t::warn, text_buffer, "\n");
+    break;
+  case LOG_ERROR:
+    con::log(con::severity_t::error, text_buffer, "\n");
+    break;
+  default:
+    break;
+  }
+}
+
+void con::terminal_listener::prelude(std::string &string,
+                                     con::severity_t severity) {
+  // We should set HH:MM:SS.III
   auto format = std::stringstream{};
   format << "[";
   auto t = std::chrono::system_clock::now();
@@ -46,6 +67,9 @@ void con::terminal_listener::finalize(std::string &string) {
   std::fprintf(stderr, "%s", string.c_str());
 }
 
-void con::initialize() { listener_list = std::make_unique<listener_list_t>(); }
+void con::initialize() {
+  listener_list = std::make_unique<listener_list_t>();
+  SetTraceLogCallback(con_raylib_hook);
+}
 con::listener_list_t *const con::listeners() { return listener_list.get(); }
 void con::cleanup() { listener_list = nullptr; }

@@ -1,7 +1,7 @@
 # Minimum CMake version is 3.19
 cmake_minimum_required(VERSION 3.17)
 # We are at v0.3.0, since v0.2 is Celerytest Legacy
-project(celerytest VERSION 0.3.0.51)
+project(celerytest VERSION 0.3.0.52)
 
 # Configure this project
 configure_file(include/${PROJECT_NAME}_cfg.in
