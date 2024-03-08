@@ -10,7 +10,12 @@ int main(int argc, char **argv) {
                        celerytest_VSTRING_FULL, "\n");
   auto exit_status = EXIT_FAILURE;
   try {
-    auto gui = std::make_unique<celerytest::draw::gui>(1920, 1080, false);
+    int major, minor, rev;
+    glfwGetVersion(&major, &minor, &rev);
+    celerytest::con::log(celerytest::con::severity_t::echo, "With GLFW v",
+                         major, ".", minor, ".", rev, "\n");
+
+    auto gui = std::make_unique<celerytest::draw::gui>(1280, 720, false);
 
     gui->enable_3d();
     auto &&data_3d = gui->get_3d_data();
@@ -19,6 +24,8 @@ int main(int argc, char **argv) {
     data_3d->camera.up = Vector3{.x = 0.0f, .y = 1.0f, .z = 0.0f};
     data_3d->camera.fovy = 60.0f;
     data_3d->camera.projection = CAMERA_PERSPECTIVE;
+
+    DisableCursor();
 
     while (!WindowShouldClose()) {
       if (IsKeyPressed('Z')) {

@@ -1,6 +1,7 @@
 #pragma once
 #include "../submodules/raylib/src/raylib.h"
 #include "celerytest_cfg.hpp"
+#include <GLFW/glfw3.h>
 #include <bits/stdc++.h>
 #include <luajit-2.1/lua.hpp>
 

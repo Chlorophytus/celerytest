@@ -7,9 +7,22 @@ draw::gui::gui(U32 width, U32 height, bool fullscreen)
     : _width{width}, _height{height}, _fullscreen{fullscreen} {
   con::log(con::severity_t::echo, "Making a ", width, "x", height, " window\n");
   con::log(con::severity_t::echo, "Fullscreen = ", fullscreen, "\n");
-
   SetConfigFlags(FLAG_VSYNC_HINT | (fullscreen ? FLAG_FULLSCREEN_MODE : 0));
   InitWindow(width, height, "Celerytest " celerytest_VSTRING_FULL);
+
+  auto gl_version = reinterpret_cast<const char *>(glGetString(GL_VERSION));
+  auto glsl_version =
+      reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+  auto gl_vendor = reinterpret_cast<const char *>(glGetString(GL_VENDOR));
+  auto gl_renderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
+
+  con::log(con::severity_t::echo, "GUI OpenGL version is '", gl_version,
+           "'\n");
+  con::log(con::severity_t::echo, "GUI OpenGL GLSL version is '", glsl_version,
+           "'\n");
+  con::log(con::severity_t::echo, "GUI OpenGL vendor is '", gl_vendor, "'\n");
+  con::log(con::severity_t::echo, "GUI OpenGL renderer is '", gl_renderer,
+           "'\n");
 }
 
 void draw::gui::enable_3d() {

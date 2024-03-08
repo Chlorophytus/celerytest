@@ -1,13 +1,19 @@
 # Minimum CMake version is 3.19
 cmake_minimum_required(VERSION 3.17)
 # We are at v0.3.0, since v0.2 is Celerytest Legacy
-project(celerytest VERSION 0.3.0.52)
+project(celerytest VERSION 0.3.0.53)
 
 # Configure this project
 configure_file(include/${PROJECT_NAME}_cfg.in
     ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}_cfg.hpp)
 
+# We will use OpenGL 4.3
 set(GRAPHICS GRAPHICS_API_OPENGL_43)
+
+# GLFW later than 3.3.8 is bugged and can't use Primus for now.
+# Ubuntus bundle in 3.3.8
+# TODO: Bundle in our own GLFW
+set(USE_EXTERNAL_GLFW ON)
 
 # Add raylib
 add_subdirectory(submodules/raylib)
